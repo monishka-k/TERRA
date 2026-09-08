@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="100%" height="100%" fill="none">
+  <defs>
+    <filter id="moss-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="moss-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399" />
+      <stop offset="50%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <linearGradient id="neon-accent" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#00ffaa" />
+      <stop offset="50%" stop-color="#34d399" />
+      <stop offset="100%" stop-color="#d4f15d" />
+    </linearGradient>
+  </defs>
+
+  <!-- Dermal Ridges (100% Transparent Background - Pure Glowing Vector Paths) -->
+  <g filter="url(#moss-glow)" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Core Center Loop -->
+    <path d="M 200 230 C 190 230 185 220 185 205 C 185 185 215 185 215 205 C 215 225 195 245 190 265" stroke="url(#neon-accent)" stroke-width="5" />
+    <path d="M 195 195 C 195 190 205 190 205 195 C 205 205 195 215 195 225" stroke="#a7f3d0" stroke-width="4" />
+    
+    <!-- Dermal Loop 1 -->
+    <path d="M 175 250 C 170 215 170 175 200 170 C 230 175 230 215 225 250 C 220 280 185 300 180 330" stroke="url(#moss-gradient)" stroke-width="5" />
+    
+    <!-- Dermal Loop 2 -->
+    <path d="M 160 270 C 155 210 155 155 200 150 C 245 155 245 210 240 270 C 235 310 180 340 170 375" stroke="url(#neon-accent)" stroke-width="5" />
+    
+    <!-- Dermal Loop 3 -->
+    <path d="M 145 290 C 140 200 140 135 200 130 C 260 135 260 200 255 290 C 250 340 175 375 160 415" stroke="url(#moss-gradient)" stroke-width="5" />
+    
+    <!-- Dermal Loop 4 -->
+    <path d="M 130 310 C 125 190 125 115 200 110 C 275 115 275 190 270 310 C 265 370 170 410 150 450" stroke="url(#neon-accent)" stroke-width="5" />
+    
+    <!-- Dermal Loop 5 Outer -->
+    <path d="M 115 330 C 110 180 110 95 200 90 C 290 95 290 180 285 330 C 280 400 165 440 140 480" stroke="url(#moss-gradient)" stroke-width="5" />
+    
+    <!-- Outer Whorl Left -->
+    <path d="M 100 350 C 95 220 95 75 200 70 C 250 70 280 100 295 140" stroke="url(#neon-accent)" stroke-width="5" />
+    <path d="M 85 370 C 80 250 80 60 200 50 C 265 50 300 80 315 130" stroke="url(#moss-gradient)" stroke-width="4.5" />
+    
+    <!-- Outer Whorl Right -->
+    <path d="M 305 350 C 310 260 310 160 305 130" stroke="url(#moss-gradient)" stroke-width="5" />
+    <path d="M 320 370 C 325 280 325 180 315 130" stroke="url(#neon-accent)" stroke-width="4.5" />
+    
+    <!-- Delta Arch Patterns Left -->
+    <path d="M 70 390 C 65 310 65 240 75 180" stroke="url(#moss-gradient)" stroke-width="4" />
+    <path d="M 60 410 C 55 340 55 270 65 210" stroke="url(#neon-accent)" stroke-width="3.5" />
+    
+    <!-- Delta Arch Patterns Right -->
+    <path d="M 335 390 C 340 320 340 250 330 190" stroke="url(#moss-gradient)" stroke-width="4" />
+    <path d="M 345 410 C 350 350 350 280 340 220" stroke="url(#neon-accent)" stroke-width="3.5" />
+
+    <!-- Organic Branching Ridge Splices -->
+    <path d="M 185 160 C 190 145 195 140 200 135" stroke="#6ee7b7" stroke-width="3.5" />
+    <path d="M 215 160 C 210 145 205 140 200 135" stroke="#6ee7b7" stroke-width="3.5" />
+    <path d="M 165 210 C 170 195 175 190 180 185" stroke="#6ee7b7" stroke-width="3.5" />
+    <path d="M 235 210 C 230 195 225 190 220 185" stroke="#6ee7b7" stroke-width="3.5" />
+    <path d="M 150 260 C 155 245 160 240 165 235" stroke="#6ee7b7" stroke-width="3.5" />
+    <path d="M 250 260 C 245 245 240 240 235 235" stroke="#6ee7b7" stroke-width="3.5" />
+    
+    <!-- Lower Dermal Grooves -->
+    <path d="M 195 280 C 190 320 170 350 160 380" stroke="url(#neon-accent)" stroke-width="4.5" />
+    <path d="M 210 280 C 215 320 200 360 180 400" stroke="url(#moss-gradient)" stroke-width="4.5" />
+    <path d="M 225 300 C 220 350 190 390 170 430" stroke="url(#neon-accent)" stroke-width="4.5" />
+  </g>
+</svg>
