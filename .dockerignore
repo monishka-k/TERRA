@@ -1,0 +1,15 @@
+.git
+.gitignore
+.venv
+node_modules
+web
+.next
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache
+scratch
+.agents
+*.png
+*.svg

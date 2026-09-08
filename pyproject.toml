@@ -1,0 +1,36 @@
+[project]
+name = "the-dead-zone"
+version = "0.1.0"
+description = "SETU-DRR — hazard red zone & relocation decision support"
+requires-python = ">=3.11"
+dependencies = [
+    "core",
+    "api",
+    "pipeline",
+    "pyarrow>=25.0.1",
+]
+
+[tool.uv.workspace]
+members = ["core", "api", "pipeline"]
+
+[tool.uv.sources]
+core = { workspace = true }
+api = { workspace = true }
+pipeline = { workspace = true }
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "pytest-asyncio>=1.4.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["core/src", "api/src", "pipeline/src", "."]
+markers = [
+    "db: mark test as requiring a PostgreSQL/PostGIS database",
+]
+

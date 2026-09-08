@@ -1,0 +1,33 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# python
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.uv/
+
+# next.js
+.next/
+out/
+
+# env
+.env
+.env.local
+!.env.example
+
+# data & model artifacts (PRD §9.8 — contents never committed,
+# folder skeleton kept via .gitkeep)
+data/*/*
+models/*
+!.gitkeep
+
+# misc
+.DS_Store
+dist/
+*.log
+
+# Playwright MCP screenshot output
+.playwright-mcp/

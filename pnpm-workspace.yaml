@@ -1,0 +1,8 @@
+packages:
+  - web
+
+allowBuilds:
+  # Postinstall phones home with usage telemetry; nothing here needs it.
+  '@vaadin/vaadin-usage-statistics': false
+  sharp: false
+  unrs-resolver: false
