@@ -1,0 +1,13 @@
+# Dataset manifest (FR-1.5, FR-1.8).
+# Every source declares: tier, licence, the attribution string carried into
+# output (NFR-8), a named fallback, and a quota record verified before Day 1.
+# Target quota headroom 5-10x; below 2x a source is demoted to enrichment-only.
+
+sources: []
+#  - id: chirps_v3
+#    tier: A
+#    role: climatology, I-D threshold fitting   # FR-4.5
+#    licence: CC0-1.0
+#    attribution: "CHIRPS v3, Climate Hazards Center, UC Santa Barbara"
+#    fallback: null
+#    quota: { limit: null, window: null, calls_needed: 12 }
