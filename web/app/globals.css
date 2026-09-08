@@ -1,0 +1,767 @@
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * SETU-DRR operations console & atmospheric forest palette.
+ * Dual theme configuration:
+ *  - Dark: Calibrated against dark ground for hazard luminous contrast.
+ *  - Light: Calibrated for sunlight & command clarity with crisp high-contrast dark forest ink.
+ */
+:root {
+  /* Typography / Fonts */
+  --font-sans: var(--font-geist-sans), 'Plus Jakarta Sans', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-mono: var(--font-geist-mono), 'JetBrains Mono', monospace;
+}
+
+:root,
+html.dark {
+  color-scheme: dark;
+
+  /* SETU-DRR operations console palette (Dark) */
+  --surface-0: #0b0f16;
+  --surface-1: #111823;
+  --surface-2: #18212e;
+  --panel: #0e141d;
+
+  --line: #1f2a38;
+  --line-strong: #2c3a4c;
+
+  --ink: #e6edf5;
+  --ink-muted: #9dabbd;
+  --ink-faint: #6b7a8d;
+
+  --accent: #38bdf8;
+  --accent-strong: #7dd3fc;
+
+  --critical: #f0555f;
+  --warning: #f0a03c;
+  --safe: #4ec98a;
+
+  /* Surface / Atmosphere tokens */
+  --color-bg-base: #101712;
+  --color-forest-deep: #141d17;
+  --color-forest-mid: #223227;
+  --color-forest-light: #34483a;
+  --color-forest-surface: #0b1612;
+  --color-forest-surface-hover: #10221c;
+  --color-forest-dark: #06100c;
+
+  /* Citron & Brand Accents */
+  --color-citron: #d4f15d;
+  --color-citron-hover: #c4e14d;
+  --color-accent-emerald: #10b981;
+  --color-accent-emerald-bright: #34d399;
+  --color-accent-emerald-light: #6ee7b7;
+
+  /* Editorial & Text */
+  --color-cream: #f6f5ef;
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #cbd5e1;
+  --color-text-muted: #94a3b8;
+  --color-text-dim: #64748b;
+
+  /* Hazard & Alert Severities */
+  --color-hazard-red: #ef4444;
+  --color-hazard-orange: #f97316;
+  --color-hazard-amber: #f59e0b;
+  --color-hazard-green: #10b981;
+
+  /* Gov Resilience Command Center Palette */
+  --color-gov-bg: #162522;
+  --color-gov-bg-light: #f7f5f0;
+  --color-gov-surface: #121e1c;
+  --color-gov-surface-hover: #1a2c29;
+  --color-gov-surface-light: #ffffff;
+  --color-gov-border: #6f8f72;
+  --color-gov-sage: #6f8f72;
+  --color-gov-sage-light: #a3c4a6;
+  --color-gov-red: #b9433f;
+  --color-gov-orange: #c96b3b;
+  --color-gov-amber: #d49a45;
+  --color-gov-green: #4d7050;
+}
+
+html.light {
+  color-scheme: light;
+
+  /* SETU-DRR operations console palette (Light - crisp daylight readability) */
+  --surface-0: #ffffff;
+  --surface-1: #f4f8f1;
+  --surface-2: #e7eee2;
+  --panel: #ffffff;
+
+  --line: #c3d2c8;
+  --line-strong: #9db0a3;
+
+  --ink: #0d1a14;
+  --ink-muted: #3d5449;
+  --ink-faint: #6a8274;
+
+  --accent: #0284c7;
+  --accent-strong: #0369a1;
+
+  --critical: #dc2626;
+  --warning: #d97706;
+  --safe: #16a34a;
+
+  /* Surface / Atmosphere tokens */
+  --color-bg-base: #eaf1e6;
+  --color-forest-deep: #e2ebdd;
+  --color-forest-mid: #d5e2d0;
+  --color-forest-light: #c7d8c2;
+  --color-forest-surface: #ffffff;
+  --color-forest-surface-hover: #f1f6ee;
+  --color-forest-dark: #f2f7ef;
+
+  /* Citron & Brand Accents (Adapted for contrast on light mode) */
+  --color-citron: #d2f83f;
+  --color-citron-hover: #c0e62d;
+  --color-accent-emerald: #059669;
+  --color-accent-emerald-bright: #10b981;
+  --color-accent-emerald-light: #047857;
+
+  /* Editorial & Text */
+  --color-cream: #121f1a;
+  --color-text-primary: #0f1c16;
+  --color-text-secondary: #334b3e;
+  --color-text-muted: #5e776a;
+  --color-text-dim: #8b9f93;
+
+  /* Hazard & Alert Severities */
+  --color-hazard-red: #dc2626;
+  --color-hazard-orange: #ea580c;
+  --color-hazard-amber: #d97706;
+  --color-hazard-green: #16a34a;
+
+  /* Gov Resilience Command Center Palette */
+  --color-gov-bg: #f7f5f0;
+  --color-gov-bg-light: #ffffff;
+  --color-gov-surface: #ffffff;
+  --color-gov-surface-hover: #edeae2;
+  --color-gov-surface-light: #ffffff;
+  --color-gov-border: #c2d1c6;
+  --color-gov-sage: #507153;
+  --color-gov-sage-light: #6f8f72;
+  --color-gov-red: #b9433f;
+  --color-gov-orange: #c96b3b;
+  --color-gov-amber: #d49a45;
+  --color-gov-green: #3d6040;
+}
+
+/*
+ * ---------------------------------------------------------------------------
+ * Material 3 system layer.
+ *
+ * Layered on top of the forest/citron palette above rather than replacing it,
+ * so existing components keep resolving their current tokens. M3 roles are
+ * mapped onto the same hues: primary is citron, the surface-container ramp is
+ * the forest scale, and outline follows --line.
+ * ---------------------------------------------------------------------------
+ */
+:root {
+  /* Motion — durations */
+  --m3-dur-short2: 100ms;
+  --m3-dur-short4: 200ms;
+  --m3-dur-medium2: 300ms;
+  --m3-dur-medium4: 400ms;
+  --m3-dur-long2: 500ms;
+  --m3-dur-extra-long2: 700ms;
+
+  /* Motion — easing. `emphasized` is a two-segment curve in the M3 spec and
+     cannot be expressed as a single cubic-bezier(); CSS gets the standard
+     curve, JS gets the real thing via CustomEase (see lib/motion/m3.ts). */
+  --m3-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --m3-ease-emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1);
+  --m3-ease-emphasized-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15);
+
+  /* Shape scale */
+  --m3-shape-xs: 4px;
+  --m3-shape-sm: 8px;
+  --m3-shape-md: 12px;
+  --m3-shape-lg: 16px;
+  --m3-shape-xl: 28px;
+  --m3-shape-full: 9999px;
+}
+
+/*
+ * Dock roles. The floating header dock is dark in BOTH themes, so its contents
+ * cannot use the page-level surface roles — those invert with the theme and
+ * would vanish against it. These are M3's inverse-surface idea, scoped to the
+ * dock: light pills and dark ink regardless of the ambient theme, softened a
+ * little at night so the strip does not glare.
+ */
+:root {
+  --m3-dock: #384134;
+  --m3-dock-surface: #ffffff;
+  --m3-dock-surface-variant: #eff3ec;
+  --m3-dock-on-surface: #1c241d;
+  --m3-dock-on-surface-variant: #475745;
+  --m3-dock-outline: rgba(255, 255, 255, 0.14);
+  --m3-dock-inverse: #1b221a;
+  --m3-dock-on-inverse: #f4f7f2;
+}
+
+html.dark {
+  --m3-dock: #161e19;
+  --m3-dock-surface: rgba(255, 255, 255, 0.16);
+  --m3-dock-surface-variant: rgba(255, 255, 255, 0.09);
+  --m3-dock-on-surface: #eef3ee;
+  --m3-dock-on-surface-variant: #c3d0c4;
+  --m3-dock-outline: rgba(255, 255, 255, 0.1);
+  --m3-dock-inverse: #0d130e;
+  --m3-dock-on-inverse: #eef3ee;
+}
+
+:root,
+html.dark {
+  /* Tonal surfaces (dark) */
+  --m3-surface: #101712;
+  --m3-surface-container-lowest: #06100c;
+  --m3-surface-container-low: #0e1611;
+  --m3-surface-container: #161e19;
+  --m3-surface-container-high: #1d2720;
+  --m3-surface-container-highest: #253027;
+
+  --m3-on-surface: #e6eee7;
+  --m3-on-surface-variant: #bcc9be;
+  --m3-outline: #8a9a8d;
+  --m3-outline-variant: #3c4a3f;
+
+  --m3-primary: #d4f15d;
+  --m3-on-primary: #1c2411;
+  --m3-primary-container: #3a4a1a;
+  --m3-on-primary-container: #e8ffa0;
+
+  --m3-secondary-container: #253027;
+  --m3-on-secondary-container: #d4e2d6;
+
+  /* Editorial accent for the hero tagline — olive, not the teal emerald. */
+  --m3-accent-foliage: #8ee638;
+
+  --m3-scrim: #000000;
+
+  /* Elevation (dark: deeper, lower-alpha ambient) */
+  --m3-elev-1: 0 1px 2px rgba(0, 0, 0, 0.5), 0 1px 3px 1px rgba(0, 0, 0, 0.3);
+  --m3-elev-2: 0 1px 2px rgba(0, 0, 0, 0.5), 0 2px 6px 2px rgba(0, 0, 0, 0.3);
+  --m3-elev-3: 0 4px 8px 3px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.5);
+  --m3-elev-4: 0 6px 10px 4px rgba(0, 0, 0, 0.3), 0 2px 3px rgba(0, 0, 0, 0.5);
+  --m3-elev-5: 0 8px 12px 6px rgba(0, 0, 0, 0.32), 0 4px 4px rgba(0, 0, 0, 0.5);
+}
+
+html.light {
+  /* Tonal surfaces (light) */
+  --m3-surface: #f4f8f1;
+  --m3-surface-container-lowest: #ffffff;
+  --m3-surface-container-low: #f0f5ed;
+  --m3-surface-container: #eaf1e6;
+  --m3-surface-container-high: #e4ebe0;
+  --m3-surface-container-highest: #dee6da;
+
+  --m3-on-surface: #171d15;
+  --m3-on-surface-variant: #414b3d;
+  --m3-outline: #6b7666;
+  --m3-outline-variant: #bccbb7;
+
+  --m3-primary: #d2f83f;
+  --m3-on-primary: #141d13;
+  --m3-primary-container: #e6ffa8;
+  --m3-on-primary-container: #253300;
+
+  --m3-secondary-container: #dbe7d5;
+  --m3-on-secondary-container: #2b3628;
+
+  /* Editorial accent for the hero tagline — olive, not the teal emerald. */
+  --m3-accent-foliage: #3f8819;
+
+  --m3-scrim: #000000;
+
+  /* Elevation (light: soft green-grey ambient) */
+  --m3-elev-1: 0 1px 2px rgba(20, 35, 25, 0.3), 0 1px 3px 1px rgba(20, 35, 25, 0.15);
+  --m3-elev-2: 0 1px 2px rgba(20, 35, 25, 0.3), 0 2px 6px 2px rgba(20, 35, 25, 0.15);
+  --m3-elev-3: 0 4px 8px 3px rgba(20, 35, 25, 0.15), 0 1px 3px rgba(20, 35, 25, 0.3);
+  --m3-elev-4: 0 6px 10px 4px rgba(20, 35, 25, 0.15), 0 2px 3px rgba(20, 35, 25, 0.3);
+  --m3-elev-5: 0 8px 12px 6px rgba(20, 35, 25, 0.15), 0 4px 4px rgba(20, 35, 25, 0.3);
+}
+
+@theme inline {
+  /* Operations Console Theme Tokens */
+  --color-surface-0: var(--surface-0);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-panel: var(--panel);
+
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+
+  --color-critical: var(--critical);
+  --color-warning: var(--warning);
+  --color-safe: var(--safe);
+
+  /* Surface / Atmosphere tokens */
+  --color-bg-base: var(--color-bg-base);
+  --color-forest-deep: var(--color-forest-deep);
+  --color-forest-mid: var(--color-forest-mid);
+  --color-forest-light: var(--color-forest-light);
+  --color-forest-surface: var(--color-forest-surface);
+  --color-forest-surface-hover: var(--color-forest-surface-hover);
+  --color-forest-dark: var(--color-forest-dark);
+
+  /* Citron & Brand Accents */
+  --color-citron: var(--color-citron);
+  --color-citron-hover: var(--color-citron-hover);
+  --color-accent-emerald: var(--color-accent-emerald);
+  --color-accent-emerald-bright: var(--color-accent-emerald-bright);
+  --color-accent-emerald-light: var(--color-accent-emerald-light);
+
+  /* Editorial & Text */
+  --color-cream: var(--color-cream);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-muted: var(--color-text-muted);
+  --color-text-dim: var(--color-text-dim);
+
+  /* Hazard & Alert Severities */
+  --color-hazard-red: var(--color-hazard-red);
+  --color-hazard-orange: var(--color-hazard-orange);
+  --color-hazard-amber: var(--color-hazard-amber);
+  --color-hazard-green: var(--color-hazard-green);
+
+  /* Gov Resilience Command Center Palette */
+  --color-gov-bg: var(--color-gov-bg);
+  --color-gov-bg-light: var(--color-gov-bg-light);
+  --color-gov-surface: var(--color-gov-surface);
+  --color-gov-surface-hover: var(--color-gov-surface-hover);
+  --color-gov-surface-light: var(--color-gov-surface-light);
+  --color-gov-border: var(--color-gov-border);
+  --color-gov-sage: var(--color-gov-sage);
+  --color-gov-sage-light: var(--color-gov-sage-light);
+  --color-gov-red: var(--color-gov-red);
+  --color-gov-orange: var(--color-gov-orange);
+  --color-gov-amber: var(--color-gov-amber);
+  --color-gov-green: var(--color-gov-green);
+
+  /* Material 3 tonal surfaces -> bg-m3-surface, text-m3-on-surface, ... */
+  --color-m3-surface: var(--m3-surface);
+  --color-m3-surface-container-lowest: var(--m3-surface-container-lowest);
+  --color-m3-surface-container-low: var(--m3-surface-container-low);
+  --color-m3-surface-container: var(--m3-surface-container);
+  --color-m3-surface-container-high: var(--m3-surface-container-high);
+  --color-m3-surface-container-highest: var(--m3-surface-container-highest);
+  --color-m3-on-surface: var(--m3-on-surface);
+  --color-m3-on-surface-variant: var(--m3-on-surface-variant);
+  --color-m3-outline: var(--m3-outline);
+  --color-m3-outline-variant: var(--m3-outline-variant);
+  --color-m3-primary: var(--m3-primary);
+  --color-m3-on-primary: var(--m3-on-primary);
+  --color-m3-primary-container: var(--m3-primary-container);
+  --color-m3-on-primary-container: var(--m3-on-primary-container);
+  --color-m3-secondary-container: var(--m3-secondary-container);
+  --color-m3-accent-foliage: var(--m3-accent-foliage);
+  --color-m3-on-secondary-container: var(--m3-on-secondary-container);
+
+  /* Dock roles (dark dock in both themes) -> bg-m3-dock-surface, ... */
+  --color-m3-dock: var(--m3-dock);
+  --color-m3-dock-surface: var(--m3-dock-surface);
+  --color-m3-dock-surface-variant: var(--m3-dock-surface-variant);
+  --color-m3-dock-on-surface: var(--m3-dock-on-surface);
+  --color-m3-dock-on-surface-variant: var(--m3-dock-on-surface-variant);
+  --color-m3-dock-outline: var(--m3-dock-outline);
+  --color-m3-dock-inverse: var(--m3-dock-inverse);
+  --color-m3-dock-on-inverse: var(--m3-dock-on-inverse);
+
+  /* Material 3 shape scale -> rounded-m3-xl, ... */
+  --radius-m3-xs: var(--m3-shape-xs);
+  --radius-m3-sm: var(--m3-shape-sm);
+  --radius-m3-md: var(--m3-shape-md);
+  --radius-m3-lg: var(--m3-shape-lg);
+  --radius-m3-xl: var(--m3-shape-xl);
+
+  /* Material 3 elevation -> shadow-m3-1, ... */
+  --shadow-m3-1: var(--m3-elev-1);
+  --shadow-m3-2: var(--m3-elev-2);
+  --shadow-m3-3: var(--m3-elev-3);
+  --shadow-m3-4: var(--m3-elev-4);
+  --shadow-m3-5: var(--m3-elev-5);
+
+  /* Material 3 easing -> ease-m3-standard, ... */
+  --ease-m3-standard: var(--m3-ease-standard);
+  --ease-m3-decelerate: var(--m3-ease-emphasized-decelerate);
+  --ease-m3-accelerate: var(--m3-ease-emphasized-accelerate);
+
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-display: var(--font-display);
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  background-color: var(--color-bg-base);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  /* Only lock the horizontal axis. The landing page scrolls vertically to
+     drive the globe zig-zag animation (window.scrollY -> scrollProgress).
+     Full-screen app shells (/gov, /workspace) clip their own overflow via
+     `h-dvh overflow-hidden` on their layout roots, so they are unaffected. */
+  overflow-x: hidden;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  vertical-align: middle;
+}
+
+.filled-icon {
+  font-variation-settings: 'FILL' 1;
+}
+
+/* Atmospheric Misty Forest Background */
+.forest-atmosphere {
+  background: radial-gradient(ellipse at 65% 45%, rgba(48, 72, 57, 0.5) 0%, rgba(22, 34, 27, 0.88) 55%, #0e1611 100%);
+  pointer-events: none;
+}
+
+html.light .forest-atmosphere {
+  background: radial-gradient(ellipse at 65% 45%, rgba(247, 251, 244, 0.75) 0%, rgba(238, 245, 234, 0.9) 55%, #eaf1e6 100%);
+}
+
+/* Frosted Dark / Sage Glass Panels */
+.glass-card {
+  background: rgba(20, 31, 24, 0.78);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  will-change: transform, box-shadow, border-color;
+}
+
+html.light .glass-card {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 20px 45px rgba(20, 40, 30, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+/* Capsule Pill Header (Matching Reference Image 2) */
+.capsule-pill {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+html.light .capsule-pill {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px rgba(20, 40, 30, 0.07);
+}
+
+/* Pill badge */
+.pill-badge {
+  background: rgba(22, 34, 27, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  will-change: transform, background-color, border-color;
+}
+
+html.light .pill-badge {
+  background: rgba(235, 244, 238, 0.92);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Minimalist Citron Solid Button (Image 1 Style - Zero Gradients) */
+.btn-citron {
+  background-color: var(--m3-primary);
+  color: var(--m3-on-primary);
+  font-weight: 700;
+  border-radius: var(--m3-shape-full);
+  box-shadow: var(--m3-elev-1);
+  transition: background-color var(--m3-dur-short4) var(--m3-ease-standard),
+    box-shadow var(--m3-dur-short4) var(--m3-ease-standard);
+}
+
+.btn-citron:hover {
+  background-color: var(--color-citron-hover);
+  box-shadow: var(--m3-elev-2), 0 12px 28px color-mix(in srgb, var(--m3-primary) 30%, transparent);
+}
+
+/* Material 3 Floating Pill Dock */
+.m3-floating-dock {
+  background: color-mix(in srgb, var(--m3-dock) 92%, transparent);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--m3-dock-outline);
+  border-radius: var(--m3-shape-full);
+  box-shadow: var(--m3-elev-3);
+  transition: background-color var(--m3-dur-medium2) var(--m3-ease-standard),
+    border-color var(--m3-dur-medium2) var(--m3-ease-standard);
+}
+
+html.dark .m3-floating-dock {
+  box-shadow: var(--m3-elev-4);
+}
+
+/* Material 3 Circular Floating Action Button (FAB) */
+.m3-fab {
+  background: var(--m3-surface-container-lowest);
+  color: var(--m3-on-surface);
+  border: 1px solid var(--m3-outline-variant);
+  border-radius: var(--m3-shape-full);
+  box-shadow: var(--m3-elev-3);
+  transition: background-color var(--m3-dur-short4) var(--m3-ease-standard),
+    border-color var(--m3-dur-short4) var(--m3-ease-standard),
+    box-shadow var(--m3-dur-short4) var(--m3-ease-standard),
+    color var(--m3-dur-short4) var(--m3-ease-standard);
+}
+
+.m3-fab:hover {
+  box-shadow: var(--m3-elev-4);
+}
+
+html.dark .m3-fab {
+  background: var(--m3-surface-container-high);
+  color: var(--m3-on-surface);
+}
+
+html.dark .m3-fab:hover {
+  background: var(--m3-surface-container-highest);
+  border-color: color-mix(in srgb, var(--m3-primary) 40%, transparent);
+  color: var(--m3-primary);
+}
+
+/* Material 3 Status Pill Card */
+.m3-status-card {
+  background: color-mix(in srgb, var(--m3-surface-container-lowest) 95%, transparent);
+  color: var(--m3-on-surface);
+  border: 1px solid var(--m3-outline-variant);
+  box-shadow: var(--m3-elev-3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+html.dark .m3-status-card {
+  background: color-mix(in srgb, var(--m3-surface-container) 95%, transparent);
+  box-shadow: var(--m3-elev-4);
+}
+
+/*
+ * Material 3 state layer. An element with .m3-state-layer gets a currentColor
+ * overlay that rises to 8% on hover and 12% on keyboard focus. This is the M3
+ * replacement for ad-hoc `hover:bg-white/20` classes, and it tints correctly in
+ * both themes because it inherits currentColor from the host.
+ */
+.m3-state-layer {
+  position: relative;
+  isolation: isolate;
+}
+
+.m3-state-layer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-color: currentColor;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity var(--m3-dur-short4) var(--m3-ease-standard);
+}
+
+.m3-state-layer:hover::before {
+  opacity: 0.08;
+}
+
+.m3-state-layer:focus-visible::before {
+  opacity: 0.12;
+}
+
+.m3-state-layer:disabled::before,
+.m3-state-layer[aria-disabled='true']::before {
+  opacity: 0;
+}
+
+/* Keep real content above the state layer and any ripple. */
+.m3-state-layer>* {
+  position: relative;
+  z-index: 1;
+}
+
+/* Ripple host: clips the expanding circle to the component's own shape. */
+.m3-ripple-layer {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/*
+ * Route container-transform surface. Lives in the root shell so it survives
+ * navigation; fixed so it never introduces a scroll container on the
+ * overflow-hidden body.
+ */
+.m3-morph-surface {
+  position: fixed;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  will-change: transform, width, height, top, left, border-radius, opacity;
+}
+
+.m3-morph-surface[data-active='true'] {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Referenced by the header's scrolling tab strip. */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Dead Zone Radiant Glows */
+.glow-dead-red {
+  box-shadow: 0 0 25px var(--color-hazard-red);
+}
+
+.glow-dead-orange {
+  box-shadow: 0 0 25px var(--color-hazard-orange);
+}
+
+/* Giant Watermark Display Typography */
+.watermark-text {
+  color: rgba(255, 255, 255, 0.12);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+  user-select: none;
+}
+
+html.light .watermark-text {
+  color: rgba(13, 26, 20, 0.07);
+}
+
+/* MapLibre's default controls are light-themed; pull them onto the app palette. */
+.maplibregl-ctrl-group {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  box-shadow: none;
+}
+
+.maplibregl-ctrl-group button+button {
+  border-top-color: var(--line);
+}
+
+.maplibregl-ctrl-group button .maplibregl-ctrl-icon {
+  filter: invert(1) brightness(0.85);
+}
+
+html.light .maplibregl-ctrl-group button .maplibregl-ctrl-icon {
+  filter: none;
+}
+
+.maplibregl-ctrl-attrib {
+  background: color-mix(in srgb, var(--panel) 88%, transparent);
+  color: var(--ink-faint);
+  font-size: 10px;
+}
+
+.maplibregl-ctrl-attrib a {
+  color: var(--ink-muted);
+}
+
+/* Range inputs: a compact thumb that matches the accent without per-browser CSS files. */
+input[type='range']::-webkit-slider-thumb {
+  appearance: none;
+  height: 12px;
+  width: 12px;
+  border-radius: 9999px;
+  background: var(--accent);
+  border: 2px solid var(--panel);
+  cursor: pointer;
+}
+
+input[type='range']::-moz-range-thumb {
+  height: 12px;
+  width: 12px;
+  border-radius: 9999px;
+  background: var(--accent);
+  border: 2px solid var(--panel);
+  cursor: pointer;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-forest-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-citron);
+}
+
+html.light ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.18);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
