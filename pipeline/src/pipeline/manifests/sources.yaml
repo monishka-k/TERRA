@@ -1,0 +1,61 @@
+# Dataset manifest (FR-1.5, FR-1.8).
+# Every source declares: tier, licence, the attribution string carried into
+# output (NFR-8), a named fallback, and a quota record verified before Day 1.
+# Target quota headroom 5-10x; below 2x a source is demoted to enrichment-only.
+
+sources:
+  - id: copernicus_dem_glo30
+    tier: A
+    role: elevation, terrain derivatives
+    licence: Copernicus
+    attribution: "Copernicus DEM GLO-30, European Space Agency"
+    fallback: null
+    quota: { limit: null, window: null, calls_needed: null }
+
+  - id: esa_worldcover
+    tier: A
+    role: land cover
+    licence: CC-BY-4.0
+    attribution: "ESA WorldCover 10m 2021"
+    fallback: null
+    quota: { limit: null, window: null, calls_needed: null }
+
+  - id: chirps_v3
+    tier: A
+    role: climatology, I-D threshold fitting
+    licence: CC0-1.0
+    attribution: "CHIRPS v3, Climate Hazards Center, UC Santa Barbara"
+    fallback: null
+    quota: { limit: null, window: null, calls_needed: null }
+
+  - id: worldpop_india
+    tier: A
+    role: absolute population counts
+    licence: CC-BY-4.0
+    attribution: "WorldPop India 100m Constrained (2020)"
+    fallback: null
+    quota: { limit: null, window: null, calls_needed: null }
+
+  - id: open_buildings
+    tier: A
+    role: building footprints, structural density
+    licence: CC-BY-4.0
+    attribution: "Google Open Buildings v3 / 2.5D Temporal"
+    fallback: null
+    quota: { limit: null, window: null, calls_needed: null }
+
+  - id: gpm_imerg_early
+    tier: B
+    role: live ARI, live precipitation trigger
+    licence: Open Data (NASA Earthdata)
+    attribution: "NASA GPM IMERG Early Precipitation"
+    fallback: chirps_v3
+    quota: { limit: null, window: null, calls_needed: 48 }
+
+  - id: ecmwf_opendata
+    tier: A
+    role: 72-hour forecast precipitation
+    licence: CC-BY-4.0
+    attribution: "ECMWF Open Data 0.25deg IFS"
+    fallback: null
+    quota: { limit: null, window: null, calls_needed: 4 }
