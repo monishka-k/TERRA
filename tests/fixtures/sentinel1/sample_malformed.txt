@@ -1,0 +1,10 @@
+# SETU-DRR Sentinel-1 Malformed Test Artifact
+# format_version: 1.0
+# semantic_type: static_frequency
+# target_resolution: 8
+h3,inundation_frequency,confidence
+8860064989fffff,0.42,0.95
+invalid_h3_hex,0.50,0.90
+8860064981fffff,NaN,0.90
+8860064983fffff,-0.20,0.90
+8860064985fffff,1.80,0.90

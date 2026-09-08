@@ -1,0 +1,7 @@
+# SETU-DRR Sentinel-1 Wrong Resolution Test Artifact
+# format_version: 1.0
+# semantic_type: static_frequency
+# target_resolution: 8
+h3,inundation_frequency,confidence
+876006498ffffff,0.42,0.95
+8960064988fffff,0.15,0.90

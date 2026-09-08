@@ -1,0 +1,13 @@
+# SETU-DRR Sentinel-1 Flood Inundation Artifact
+# format_version: 1.0
+# source: sentinel1_rtc_water_mask
+# dataset_version: s1-wayanad-2024-v1
+# semantic_type: static_frequency
+# target_resolution: 8
+# generated_at: 2026-08-31T00:00:00Z
+h3,inundation_frequency,confidence,observation_count,flags
+8860064989fffff,0.42,0.95,24,VALID
+886006498bfffff,0.15,0.90,24,VALID
+8860064981fffff,0.78,0.98,24,VALID
+8860064983fffff,0.02,0.85,24,VALID
+8860064985fffff,0.55,0.92,24,VALID

@@ -1,0 +1,6 @@
+# SETU-DRR Sentinel-1 Missing Columns Test Artifact
+# format_version: 1.0
+# semantic_type: static_frequency
+# target_resolution: 8
+col_a,col_b,col_c
+123,456,789

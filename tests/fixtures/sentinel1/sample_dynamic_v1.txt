@@ -1,0 +1,11 @@
+# SETU-DRR Sentinel-1 Live Flood Trigger Artifact
+# format_version: 1.0
+# source: sentinel1_rtc_live
+# dataset_version: s1-monsoon-2026-live
+# semantic_type: dynamic_trigger
+# target_resolution: 8
+# generated_at: 2026-08-31T06:00:00Z
+h3,trigger_value,confidence,valid_at,flags
+8860064989fffff,1.25,0.92,2026-08-31T05:30:00Z,ACTIVE_FLOOD
+886006498bfffff,0.40,0.88,2026-08-31T05:30:00Z,ELEVATED_MOISTURE
+8860064981fffff,2.10,0.95,2026-08-31T05:30:00Z,EXTREME_TRIGGER
